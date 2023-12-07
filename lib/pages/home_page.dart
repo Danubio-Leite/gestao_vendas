@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gestao_vendas/components/home_button.dart';
 import 'package:gestao_vendas/pages/sale_pages/sale_page.dart';
+import 'package:gestao_vendas/pages/user_pages/user_page.dart';
+
+import '../models/user.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,6 +13,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // List<User>? temp;
+  // List<User> users = <User>[];
+
+  // void _addUsers() async {
+  //   List temp = await Navigator.push(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => const UserPage()),
+  //   );
+
+  //   if (users != null) {
+  //     setState(() {
+  //       users.addAll(users);
+  //     });
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -43,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                   CustomHomeButtom(
                     label: 'Usuários',
                     image: 'assets/images/users.png',
-                    route: SalePage(),
+                    route: UserPage(),
                   ),
                 ],
               ),

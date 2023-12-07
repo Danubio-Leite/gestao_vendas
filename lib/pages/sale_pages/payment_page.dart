@@ -9,7 +9,7 @@ class PaymentPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Venda'),
       ),
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
