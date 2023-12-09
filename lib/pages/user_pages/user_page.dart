@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gestao_vendas/pages/user_pages/add_user_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/user.dart';
@@ -26,15 +25,27 @@ class _UserPageState extends State<UserPage> {
             itemBuilder: (context, index) {
               return Dismissible(
                 key: UniqueKey(),
-                child: ListTile(
-                  leading: const Icon(Icons.man_4),
-                  title: Text(list.users[index].name),
-                  iconColor: Colors.indigo,
-                  trailing: IconButton(
-                      onPressed: () {
-                        list.remove(index);
-                      },
-                      icon: const Icon(Icons.delete)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(94, 81, 122, 129),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.black,
+                      ),
+                    ),
+                    child: ListTile(
+                      leading: const Icon(Icons.person),
+                      title: Text(list.users[index].name),
+                      trailing: IconButton(
+                          onPressed: () {
+                            deleteUser(context, index);
+                          },
+                          icon: const Icon(Icons.delete)),
+                    ),
+                  ),
                 ),
               );
             },
@@ -108,6 +119,43 @@ class _UserPageState extends State<UserPage> {
                         Navigator.pop(context);
                       });
                 },
+              ),
+            ],
+          );
+        });
+  }
+
+  void deleteUser(context, index) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            scrollable: true,
+            title: const Text('Excluir Usuário?'),
+            content: const Padding(
+              padding: EdgeInsets.all(8.0),
+            ),
+            actions: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                    child: const Text("Voltar"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  Consumer<Users>(
+                    builder: (BuildContext context, Users list, _) {
+                      return TextButton(
+                          child: const Text("Prosseguir"),
+                          onPressed: () async {
+                            list.remove(index);
+                            Navigator.pop(context);
+                          });
+                    },
+                  ),
+                ],
               ),
             ],
           );

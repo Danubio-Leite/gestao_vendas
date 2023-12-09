@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gestao_vendas/models/user.dart';
-import 'package:gestao_vendas/models/user.dart';
-import 'package:gestao_vendas/pages/sale_pages/password_error_page.dart';
 import 'package:provider/provider.dart';
-
 import '../../models/memory.dart';
 import '../../models/sale.dart';
 import '../../models/sales.dart';
-import '../../models/user.dart';
 import '../../models/users.dart';
 
 class PasswordPage extends StatefulWidget {
