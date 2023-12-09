@@ -1,4 +1,6 @@
-class Memory {
+import 'package:flutter/material.dart';
+
+class Memory extends ChangeNotifier {
   String _value = '0';
   bool _wipeValue = false;
 

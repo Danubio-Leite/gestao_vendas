@@ -2,12 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:gestao_vendas/pages/home_page.dart';
 import 'package:provider/provider.dart';
 
+import 'models/memory.dart';
+import 'models/sale.dart';
+import 'models/sales.dart';
 import 'models/user.dart';
 import 'models/users.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => Users(users: [User(name: 'Admin', password: 'admin')]),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+          create: (context) =>
+              Users(users: [User(name: 'Admin', password: 'admin')])),
+      ChangeNotifierProvider(
+          create: (context) => Sales(sales: [
+                Sale(
+                    date: '10.10.2023',
+                    payment: 'Debito',
+                    user: 'Teste',
+                    value: '1.000,00')
+              ])),
+      ChangeNotifierProvider(create: (context) => Memory()),
+    ],
     child: const MyApp(),
   ));
 }

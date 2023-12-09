@@ -89,7 +89,7 @@ class Keyboard extends StatelessWidget {
                     text: '0',
                     pressed: pressed,
                   ),
-                  const ConfirmButton(
+                  ConfirmButton(
                     text: 'Confirmar',
                   ),
                 ],

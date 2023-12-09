@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:gestao_vendas/components/display.dart';
 import 'package:gestao_vendas/components/keyboard.dart';
 import 'package:gestao_vendas/models/memory.dart';
+import 'package:provider/provider.dart';
 
 class SalePage extends StatefulWidget {
   const SalePage({super.key});
@@ -12,13 +13,14 @@ class SalePage extends StatefulWidget {
 }
 
 class _SalePageState extends State<SalePage> {
-  final Memory memory = Memory();
+  //final Memory memory = Memory();
+  // Provider.of(context, listen: false).yourVariable
 
   _keyPressed(String pressedKey) {
     setState(() {
-      memory.addPressedKey(pressedKey);
+      Provider.of<Memory>(context, listen: false).addPressedKey(pressedKey);
     });
-    print(memory.value);
+    print(Provider.of<Memory>(context, listen: false).value);
   }
 
   @override
@@ -29,7 +31,10 @@ class _SalePageState extends State<SalePage> {
         title: const Text('Venda'),
       ),
       body: Column(
-        children: [Display(memory.value), Keyboard(_keyPressed)],
+        children: [
+          Display(Provider.of<Memory>(context, listen: false).value),
+          Keyboard(_keyPressed)
+        ],
       ),
     );
   }

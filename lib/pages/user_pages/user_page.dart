@@ -30,12 +30,12 @@ class _UserPageState extends State<UserPage> {
                   leading: const Icon(Icons.circle_outlined),
                   title: Text(list.users[index].name),
                   iconColor: Colors.indigo,
+                  trailing: IconButton(
+                      onPressed: () {
+                        list.remove(index);
+                      },
+                      icon: const Icon(Icons.delete)),
                 ),
-                onDismissed: (direction) {
-                  setState(() {
-                    list.users.removeAt(index);
-                  });
-                },
               );
             },
           );
@@ -97,11 +97,10 @@ class _UserPageState extends State<UserPage> {
                   return TextButton(
                       child: const Text("Salvar"),
                       onPressed: () async {
-                        setState(() {
-                          list.users.add(User(
-                              name: nameInput.text,
-                              password: passwordInput.text));
-                        });
+                        list.add(User(
+                            name: nameInput.text,
+                            password: passwordInput.text));
+
                         Navigator.pop(context);
                       });
                 },

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../models/memory.dart';
+
 class PaymentPage extends StatelessWidget {
   const PaymentPage({super.key});
 
