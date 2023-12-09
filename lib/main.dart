@@ -12,8 +12,13 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-          create: (context) =>
-              Users(users: [User(name: 'Admin', password: 'admin')])),
+          create: (context) => Users(users: [
+                User(
+                  name: 'Admin',
+                  password: 'admin',
+                  id: '00',
+                )
+              ])),
       ChangeNotifierProvider(
           create: (context) => Sales(sales: [
                 Sale(

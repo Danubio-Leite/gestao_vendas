@@ -13,9 +13,6 @@ class SalePage extends StatefulWidget {
 }
 
 class _SalePageState extends State<SalePage> {
-  //final Memory memory = Memory();
-  // Provider.of(context, listen: false).yourVariable
-
   _keyPressed(String pressedKey) {
     setState(() {
       Provider.of<Memory>(context, listen: false).addPressedKey(pressedKey);

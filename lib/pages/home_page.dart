@@ -4,6 +4,7 @@ import 'package:gestao_vendas/pages/reports_pages/reports_page.dart';
 import 'package:gestao_vendas/pages/sale_pages/sale_page.dart';
 import 'package:gestao_vendas/pages/user_pages/user_page.dart';
 
+import '../components/clock.dart';
 import '../models/user.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,9 +33,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(2.0),
+        padding: const EdgeInsets.all(2.0),
         child: Column(
           children: [
             Expanded(
@@ -42,10 +43,10 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Data e Hora'),
+                    ClockWidget(),
                   ],
                 )),
-            Expanded(
+            const Expanded(
               flex: 1,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

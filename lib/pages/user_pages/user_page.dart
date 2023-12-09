@@ -27,7 +27,7 @@ class _UserPageState extends State<UserPage> {
               return Dismissible(
                 key: UniqueKey(),
                 child: ListTile(
-                  leading: const Icon(Icons.circle_outlined),
+                  leading: const Icon(Icons.man_4),
                   title: Text(list.users[index].name),
                   iconColor: Colors.indigo,
                   trailing: IconButton(
@@ -97,9 +97,13 @@ class _UserPageState extends State<UserPage> {
                   return TextButton(
                       child: const Text("Salvar"),
                       onPressed: () async {
-                        list.add(User(
+                        list.add(
+                          User(
                             name: nameInput.text,
-                            password: passwordInput.text));
+                            password: passwordInput.text,
+                            id: DateTime.now().toString(),
+                          ),
+                        );
 
                         Navigator.pop(context);
                       });
