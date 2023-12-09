@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:gestao_vendas/models/user.dart';
+import 'package:gestao_vendas/models/users.dart';
+import 'package:provider/provider.dart';
 
 class Memory extends ChangeNotifier {
   String _value = '0';
   bool _wipeValue = false;
   String _payment = '';
   String _date = '';
-  String _activeUser = '00';
+  User _activeUser = User(
+    name: 'Admin',
+    password: 'admin',
+    id: '00',
+  );
 
   void addPressedKey(String pressedKey) {
     if (pressedKey == 'Apagar') {
@@ -48,7 +55,11 @@ class Memory extends ChangeNotifier {
     _payment = payment;
   }
 
-  String get activeUser {
+  User get activeUser {
     return _activeUser;
+  }
+
+  set setActiveUser(User activeUser) {
+    _activeUser = activeUser;
   }
 }

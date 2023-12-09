@@ -55,7 +55,7 @@ class _ReportPageState extends State<ReportPage> {
                               textAlign: TextAlign.start,
                             ),
                             Text(
-                              'Usuário: ${list.sales[index].user}',
+                              'Usuário: ${list.sales[index].user.name}',
                               textAlign: TextAlign.start,
                             ),
                           ],

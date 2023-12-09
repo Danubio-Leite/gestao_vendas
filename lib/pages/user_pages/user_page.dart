@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../models/memory.dart';
 import '../../models/user.dart';
 import '../../models/users.dart';
 
@@ -20,35 +21,58 @@ class _UserPageState extends State<UserPage> {
       ),
       body: Consumer<Users>(
         builder: (BuildContext context, Users list, _) {
-          return ListView.builder(
-            itemCount: list.users.length,
-            itemBuilder: (context, index) {
-              return Dismissible(
-                key: UniqueKey(),
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Flexible(
+                flex: 1,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(94, 81, 122, 129),
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.black,
-                      ),
-                    ),
-                    child: ListTile(
-                      leading: const Icon(Icons.person),
-                      title: Text(list.users[index].name),
-                      trailing: IconButton(
-                          onPressed: () {
-                            deleteUser(context, index);
-                          },
-                          icon: const Icon(Icons.delete)),
-                    ),
+                  child: Text(
+                    'Usurário ativo: ${Provider.of<Memory>(context, listen: false).activeUser.name}',
                   ),
                 ),
-              );
-            },
+              ),
+              Flexible(
+                flex: 9,
+                child: ListView.builder(
+                  itemCount: list.users.length,
+                  itemBuilder: (context, index) {
+                    return Dismissible(
+                      key: UniqueKey(),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(94, 81, 122, 129),
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              width: 1,
+                              color: Colors.black,
+                            ),
+                          ),
+                          child: ListTile(
+                            onTap: () {
+                              setState(() {
+                                Provider.of<Memory>(context, listen: false)
+                                    .setActiveUser = list.users[index];
+                              });
+                            },
+                            leading: const Icon(Icons.person),
+                            title: Text(list.users[index].name),
+                            trailing: IconButton(
+                                onPressed: () {
+                                  deleteUser(context, index);
+                                },
+                                icon: const Icon(Icons.delete)),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
           );
         },
       ),

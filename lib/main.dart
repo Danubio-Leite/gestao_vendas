@@ -24,7 +24,7 @@ void main() {
                 Sale(
                     date: '10.10.2023',
                     payment: 'Debito',
-                    user: 'Teste',
+                    user: Provider.of<Users>(context, listen: false).users[0],
                     value: '1.000,00')
               ])),
       ChangeNotifierProvider(create: (context) => Memory()),
@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
             seedColor: const Color.fromARGB(255, 116, 116, 118)),

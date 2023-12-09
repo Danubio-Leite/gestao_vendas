@@ -18,32 +18,80 @@ class PaymentPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                Provider.of<Memory>(context, listen: false).setPayment =
-                    'Crédito';
-                print(Provider.of<Memory>(context, listen: false).payment);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const PasswordPage()),
-                );
-              },
-              child: const Text('Crédito'),
+            Container(
+              height: 80,
+              width: 200,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(94, 81, 122, 129),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  width: 1,
+                  color: Colors.black,
+                ),
+              ),
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  elevation: MaterialStateProperty.all(0),
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.transparent),
+                ),
+                onPressed: () {
+                  Provider.of<Memory>(context, listen: false).setPayment =
+                      'Crédito';
+                  print(Provider.of<Memory>(context, listen: false).payment);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PasswordPage()),
+                  );
+                },
+                child: const Text(
+                  'Crédito',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 32,
+                  ),
+                ),
+              ),
             ),
             const SizedBox(
-              height: 10,
+              height: 30,
             ),
-            ElevatedButton(
-              onPressed: () {
-                Provider.of<Memory>(context, listen: false).setPayment =
-                    'Débito';
-                print(Provider.of<Memory>(context, listen: false).payment);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const PasswordPage()),
-                );
-              },
-              child: const Text('Débito'),
+            Container(
+              height: 80,
+              width: 200,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(94, 81, 122, 129),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  width: 1,
+                  color: Colors.black,
+                ),
+              ),
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  elevation: MaterialStateProperty.all(0),
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.transparent),
+                ),
+                onPressed: () {
+                  Provider.of<Memory>(context, listen: false).setPayment =
+                      'Débito';
+                  print(Provider.of<Memory>(context, listen: false).payment);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PasswordPage()),
+                  );
+                },
+                child: const Text(
+                  'Débito',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 32,
+                  ),
+                ),
+              ),
             ),
           ],
         ),

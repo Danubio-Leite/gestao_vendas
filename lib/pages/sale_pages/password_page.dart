@@ -27,7 +27,8 @@ class _PasswordPageState extends State<PasswordPage> {
             const SizedBox(
               height: 50,
             ),
-            const Text('Dígite sua senha:'),
+            Text(
+                '${Provider.of<Memory>(context, listen: false).activeUser.name}, digite sua senha:'),
             TextFormField(
               obscureText: true,
               controller: passwordInput,
@@ -41,54 +42,72 @@ class _PasswordPageState extends State<PasswordPage> {
             ),
             Consumer<Sales>(
               builder: (BuildContext context, Sales list, Widget? widget) {
-                return ElevatedButton(
-                  onPressed: () async {
-                    if (passwordInput.text ==
-                        Provider.of<Users>(context, listen: false)
-                            .users[0]
-                            .password) {
-                      list.add(
-                        Sale(
-                          date: DateTime.now().toString(),
-                          user: Provider.of<Users>(context, listen: false)
-                              .users[0]
-                              .name,
-                          payment: 'Débito',
-                          value:
-                              Provider.of<Memory>(context, listen: false).value,
-                        ),
-                      );
-
-                      Provider.of<Memory>(context, listen: false).memoryClear();
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                      const snackBar = SnackBar(
-                        backgroundColor: Colors.white54,
-                        content: Text(
-                          'Venda registrada com sucesso.',
-                          style: TextStyle(
-                            color: Colors.green,
+                return Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(94, 81, 122, 129),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.black,
+                    ),
+                  ),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      elevation: MaterialStateProperty.all(0),
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.transparent),
+                    ),
+                    onPressed: () async {
+                      if (passwordInput.text ==
+                          Provider.of<Memory>(context, listen: false)
+                              .activeUser
+                              .password) {
+                        list.add(
+                          Sale(
+                            date: DateTime.now().toString(),
+                            user: Provider.of<Memory>(context, listen: false)
+                                .activeUser,
+                            payment: 'Débito',
+                            value: Provider.of<Memory>(context, listen: false)
+                                .value,
                           ),
-                        ),
-                      );
+                        );
 
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    } else {
-                      const snackBar = SnackBar(
-                        backgroundColor: Colors.white54,
-                        content: Text(
-                          'Senha incorreta!',
-                          style: TextStyle(
-                            color: Colors.red,
+                        Provider.of<Memory>(context, listen: false)
+                            .memoryClear();
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        const snackBar = SnackBar(
+                          backgroundColor: Colors.white54,
+                          content: Text(
+                            'Venda registrada com sucesso.',
+                            style: TextStyle(
+                              color: Colors.green,
+                            ),
                           ),
-                        ),
-                      );
+                        );
 
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }
-                  },
-                  child: const Text('Confirmar'),
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      } else {
+                        const snackBar = SnackBar(
+                          backgroundColor: Colors.white54,
+                          content: Text(
+                            'Senha incorreta!',
+                            style: TextStyle(
+                              color: Colors.red,
+                            ),
+                          ),
+                        );
+
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                    },
+                    child: const Text(
+                      'Confirmar',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                  ),
                 );
               },
             ),

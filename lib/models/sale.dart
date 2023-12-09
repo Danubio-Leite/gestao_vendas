@@ -1,8 +1,10 @@
+import 'package:gestao_vendas/models/user.dart';
+
 class Sale {
   String date;
   String value;
   String payment;
-  String user;
+  User user;
 
   Sale({
     required this.date,
