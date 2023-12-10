@@ -62,7 +62,7 @@ class _ReportPageState extends State<ReportPage> {
                         ),
                         trailing: IconButton(
                             onPressed: () {
-                              list.remove(index);
+                              deleteReport(context, index);
                             },
                             icon: const Icon(Icons.delete)),
                       ),
@@ -75,5 +75,48 @@ class _ReportPageState extends State<ReportPage> {
         );
       }),
     );
+  }
+
+  void deleteReport(context, index) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            scrollable: true,
+            title: const Text('Excluir Relatório?'),
+            content: const Padding(
+              padding: EdgeInsets.all(8.0),
+            ),
+            actions: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                    child: const Text(
+                      "Voltar",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  Consumer<Sales>(
+                    builder: (BuildContext context, Sales list, _) {
+                      return TextButton(
+                          child: const Text(
+                            "Prosseguir",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          onPressed: () async {
+                            list.remove(index);
+                            Navigator.pop(context);
+                          });
+                    },
+                  ),
+                ],
+              ),
+            ],
+          );
+        });
   }
 }

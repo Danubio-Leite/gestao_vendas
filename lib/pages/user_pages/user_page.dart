@@ -33,6 +33,16 @@ class _UserPageState extends State<UserPage> {
                   ),
                 ),
               ),
+              const Flexible(
+                flex: 1,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    'Selecione um usuário:',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
               Flexible(
                 flex: 9,
                 child: ListView.builder(
@@ -53,10 +63,7 @@ class _UserPageState extends State<UserPage> {
                           ),
                           child: ListTile(
                             onTap: () {
-                              setState(() {
-                                Provider.of<Memory>(context, listen: false)
-                                    .setActiveUser = list.users[index];
-                              });
+                              selectUser(context, index);
                             },
                             leading: const Icon(Icons.person),
                             title: Text(list.users[index].name),
@@ -123,14 +130,20 @@ class _UserPageState extends State<UserPage> {
             ),
             actions: [
               TextButton(
-                  child: const Text("Cancelar"),
+                  child: const Text(
+                    "Cancelar",
+                    style: TextStyle(color: Colors.black),
+                  ),
                   onPressed: () {
                     Navigator.pop(context);
                   }),
               Consumer<Users>(
                 builder: (BuildContext context, Users list, _) {
                   return TextButton(
-                      child: const Text("Salvar"),
+                      child: const Text(
+                        "Salvar",
+                        style: TextStyle(color: Colors.black),
+                      ),
                       onPressed: () async {
                         list.add(
                           User(
@@ -164,7 +177,10 @@ class _UserPageState extends State<UserPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                    child: const Text("Voltar"),
+                    child: const Text(
+                      "Voltar",
+                      style: TextStyle(color: Colors.black),
+                    ),
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -172,7 +188,10 @@ class _UserPageState extends State<UserPage> {
                   Consumer<Users>(
                     builder: (BuildContext context, Users list, _) {
                       return TextButton(
-                          child: const Text("Prosseguir"),
+                          child: const Text(
+                            "Prosseguir",
+                            style: TextStyle(color: Colors.black),
+                          ),
                           onPressed: () async {
                             list.remove(index);
                             Navigator.pop(context);
@@ -182,6 +201,67 @@ class _UserPageState extends State<UserPage> {
                 ],
               ),
             ],
+          );
+        });
+  }
+
+  void selectUser(context, index) {
+    TextEditingController passwordInput = TextEditingController();
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Consumer<Users>(
+            builder: (BuildContext context, Users list, _) {
+              return AlertDialog(
+                scrollable: true,
+                title: Text('${list.users[index].name}, digite sua senha:'),
+                content: TextFormField(
+                  obscureText: true,
+                  controller: passwordInput,
+                  decoration: const InputDecoration(
+                    labelText: 'Senha',
+                    icon: Icon(Icons.key),
+                  ),
+                ),
+                actions: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextButton(
+                        child: const Text(
+                          "Voltar",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      Consumer<Users>(
+                        builder: (BuildContext context, Users list, _) {
+                          return TextButton(
+                              child: const Text(
+                                "Prosseguir",
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              onPressed: () async {
+                                if (passwordInput.text ==
+                                    Provider.of<Users>(context, listen: false)
+                                        .users[index]
+                                        .password) {
+                                  setState(() {
+                                    Provider.of<Memory>(context, listen: false)
+                                        .setActiveUser = list.users[index];
+                                  });
+                                  Navigator.pop(context);
+                                }
+                              });
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              );
+            },
           );
         });
   }
