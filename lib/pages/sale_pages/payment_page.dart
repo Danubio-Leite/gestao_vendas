@@ -38,7 +38,6 @@ class PaymentPage extends StatelessWidget {
                 onPressed: () {
                   Provider.of<Memory>(context, listen: false).setPayment =
                       'Crédito';
-                  print(Provider.of<Memory>(context, listen: false).payment);
                   Navigator.push(
                     context,
                     MaterialPageRoute(

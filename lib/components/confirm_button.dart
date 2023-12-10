@@ -29,8 +29,6 @@ class ConfirmButton extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              //memory aparentemente zerado
-              print(memory.value);
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const PaymentPage()),

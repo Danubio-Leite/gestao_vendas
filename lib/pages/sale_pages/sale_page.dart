@@ -17,7 +17,6 @@ class _SalePageState extends State<SalePage> {
     setState(() {
       Provider.of<Memory>(context, listen: false).addPressedKey(pressedKey);
     });
-    print(Provider.of<Memory>(context, listen: false).value);
   }
 
   @override
