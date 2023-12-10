@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gestao_vendas/models/user.dart';
-import 'package:gestao_vendas/models/users.dart';
-import 'package:provider/provider.dart';
 
 class Memory extends ChangeNotifier {
   String _value = '0';

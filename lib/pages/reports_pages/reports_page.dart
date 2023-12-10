@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/sales.dart';
@@ -11,6 +12,8 @@ class ReportPage extends StatefulWidget {
 }
 
 class _ReportPageState extends State<ReportPage> {
+  final formatCurrency = NumberFormat.simpleCurrency();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +50,7 @@ class _ReportPageState extends State<ReportPage> {
                               textAlign: TextAlign.start,
                             ),
                             Text(
-                              'Valor: ${list.sales[index].value}',
+                              'Valor: R\$ ${double.parse(list.sales[index].value).toStringAsFixed(2)}',
                               textAlign: TextAlign.start,
                             ),
                             Text(

@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../../models/memory.dart';
 import '../../models/sale.dart';
 import '../../models/sales.dart';
-import '../../models/users.dart';
 
 class PasswordPage extends StatefulWidget {
   const PasswordPage({super.key});

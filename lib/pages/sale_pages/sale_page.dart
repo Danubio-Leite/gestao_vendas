@@ -26,10 +26,17 @@ class _SalePageState extends State<SalePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Venda'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+            Provider.of<Memory>(context, listen: false).memoryClear();
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
       ),
       body: Column(
         children: [
-          Display(Provider.of<Memory>(context, listen: false).value),
+          Display(Provider.of<Memory>(context, listen: false).value.toString()),
           Keyboard(_keyPressed)
         ],
       ),

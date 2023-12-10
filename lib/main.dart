@@ -25,7 +25,7 @@ void main() {
                     date: '10.10.2023',
                     payment: 'Debito',
                     user: Provider.of<Users>(context, listen: false).users[0],
-                    value: '1.000,00')
+                    value: '1000')
               ])),
       ChangeNotifierProvider(create: (context) => Memory()),
     ],

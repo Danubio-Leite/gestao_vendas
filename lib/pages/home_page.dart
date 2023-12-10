@@ -3,9 +3,7 @@ import 'package:gestao_vendas/components/home_button.dart';
 import 'package:gestao_vendas/pages/reports_pages/reports_page.dart';
 import 'package:gestao_vendas/pages/sale_pages/sale_page.dart';
 import 'package:gestao_vendas/pages/user_pages/user_page.dart';
-
 import '../components/clock.dart';
-import '../models/user.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
