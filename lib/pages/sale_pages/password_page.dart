@@ -13,6 +13,7 @@ class PasswordPage extends StatefulWidget {
 
 class _PasswordPageState extends State<PasswordPage> {
   TextEditingController passwordInput = TextEditingController();
+  DateTime now = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +64,8 @@ class _PasswordPageState extends State<PasswordPage> {
                               .password) {
                         list.add(
                           Sale(
-                            date: DateTime.now().toString(),
+                            date: DateTime(now.year, now.month, now.day)
+                                .toString(),
                             user: Provider.of<Memory>(context, listen: false)
                                 .activeUser,
                             payment: 'Débito',

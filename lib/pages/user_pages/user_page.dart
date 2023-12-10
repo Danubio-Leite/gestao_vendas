@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestao_vendas/pages/user_pages/add_user_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/memory.dart';
@@ -84,83 +85,121 @@ class _UserPageState extends State<UserPage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+          backgroundColor: const Color.fromARGB(94, 81, 122, 129),
+          elevation: 0,
           child: const Icon(Icons.add),
           onPressed: () {
-            addUser(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AddUserPage()),
+            );
           }),
     );
   }
 
-  void addUser(context) {
-    TextEditingController nameInput = TextEditingController();
-    TextEditingController passwordInput = TextEditingController();
+  // void addUser(context) {
+  //   TextEditingController nameInput = TextEditingController();
+  //   TextEditingController passwordInput = TextEditingController();
+  //   TextEditingController passwordInput2 = TextEditingController();
+  //   bool _passwordDontMatch = false;
 
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            scrollable: true,
-            title: const Text('Cadastrar usuário'),
-            content: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Form(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    TextFormField(
-                      controller: nameInput,
-                      decoration: const InputDecoration(
-                        labelText: 'Nome',
-                        icon: Icon(Icons.account_box),
-                      ),
-                    ),
-                    const Padding(padding: EdgeInsets.all(5)),
-                    TextFormField(
-                      obscureText: true,
-                      controller: passwordInput,
-                      decoration: const InputDecoration(
-                        labelText: 'Senha',
-                        icon: Icon(Icons.key),
-                      ),
-                    ),
-                    const Padding(padding: EdgeInsets.all(5)),
-                  ],
-                ),
-              ),
-            ),
-            actions: [
-              TextButton(
-                  child: const Text(
-                    "Cancelar",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  }),
-              Consumer<Users>(
-                builder: (BuildContext context, Users list, _) {
-                  return TextButton(
-                      child: const Text(
-                        "Salvar",
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      onPressed: () async {
-                        list.add(
-                          User(
-                            name: nameInput.text,
-                            password: passwordInput.text,
-                            id: DateTime.now().toString(),
-                          ),
-                        );
+  //   showDialog(
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return AlertDialog(
+  //           scrollable: true,
+  //           title: const Text('Cadastrar usuário'),
+  //           content: StatefulBuilder(
+  //               builder: (BuildContext context, StateSetter setState) {
+  //             return Padding(
+  //               padding: const EdgeInsets.all(4.0),
+  //               child: Form(
+  //                 child: Column(
+  //                   crossAxisAlignment: CrossAxisAlignment.start,
+  //                   children: <Widget>[
+  //                     TextFormField(
+  //                       controller: nameInput,
+  //                       decoration: const InputDecoration(
+  //                         labelText: 'Nome',
+  //                         icon: Icon(Icons.account_box),
+  //                       ),
+  //                     ),
+  //                     const Padding(padding: EdgeInsets.all(5)),
+  //                     TextFormField(
+  //                       obscureText: true,
+  //                       controller: passwordInput,
+  //                       decoration: const InputDecoration(
+  //                         labelText: 'Senha',
+  //                         icon: Icon(Icons.key),
+  //                       ),
+  //                     ),
+  //                     TextFormField(
+  //                       obscureText: true,
+  //                       controller: passwordInput2,
+  //                       decoration: const InputDecoration(
+  //                         labelText: 'Confirme sua senha',
+  //                         icon: Icon(Icons.key),
+  //                       ),
+  //                     ),
+  //                     if (_passwordDontMatch == true)
+  //                       const Center(
+  //                         child: Padding(
+  //                           padding: EdgeInsets.only(top: 4.0),
+  //                           child: Text(
+  //                             'Senhas não conferem.',
+  //                             style: TextStyle(
+  //                               color: Colors.red,
+  //                             ),
+  //                           ),
+  //                         ),
+  //                       ),
+  //                     const Padding(padding: EdgeInsets.all(5)),
+  //                   ],
+  //                 ),
+  //               ),
+  //             );
+  //           }),
+  //           actions: [
+  //             TextButton(
+  //                 child: const Text(
+  //                   "Cancelar",
+  //                   style: TextStyle(color: Colors.black),
+  //                 ),
+  //                 onPressed: () {
+  //                   Navigator.pop(context);
+  //                 }),
+  //             Consumer<Users>(
+  //               builder: (BuildContext context, Users list, _) {
+  //                 return TextButton(
+  //                     child: const Text(
+  //                       "Salvar",
+  //                       style: TextStyle(color: Colors.black),
+  //                     ),
+  //                     onPressed: () {
+  //                       if (passwordInput == passwordInput2) {
+  //                         setState(() {
+  //                           list.add(
+  //                             User(
+  //                               name: nameInput.text,
+  //                               password: passwordInput.text,
+  //                               id: DateTime.now().toString(),
+  //                             ),
+  //                           );
 
-                        Navigator.pop(context);
-                      });
-                },
-              ),
-            ],
-          );
-        });
-  }
+  //                           Navigator.pop(context);
+  //                         });
+  //                       } else {
+  //                         setState(() {
+  //                           _passwordDontMatch = true;
+  //                         });
+  //                       }
+  //                     });
+  //               },
+  //             ),
+  //           ],
+  //         );
+  //       });
+  // }
 
   void deleteUser(context, index) {
     showDialog(

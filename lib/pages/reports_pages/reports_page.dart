@@ -12,7 +12,8 @@ class ReportPage extends StatefulWidget {
 }
 
 class _ReportPageState extends State<ReportPage> {
-  final formatCurrency = NumberFormat.simpleCurrency();
+  final currencyFormatter =
+      NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +47,11 @@ class _ReportPageState extends State<ReportPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Data: ${list.sales[index].date}',
+                              'Data: ${list.sales[index].date.replaceAll("00:00:00.000", "")}',
                               textAlign: TextAlign.start,
                             ),
                             Text(
-                              'Valor: R\$ ${double.parse(list.sales[index].value).toStringAsFixed(2)}',
+                              'Valor: ${currencyFormatter.format(double.parse(list.sales[index].value) / 100)}',
                               textAlign: TextAlign.start,
                             ),
                             Text(
