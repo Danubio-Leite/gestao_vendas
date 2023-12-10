@@ -3,7 +3,6 @@ import 'package:gestao_vendas/pages/home_page.dart';
 import 'package:provider/provider.dart';
 
 import 'models/memory.dart';
-import 'models/sale.dart';
 import 'models/sales.dart';
 import 'models/user.dart';
 import 'models/users.dart';
@@ -19,15 +18,7 @@ void main() {
                   id: '00',
                 )
               ])),
-      ChangeNotifierProvider(
-          create: (context) => Sales(sales: [
-                Sale(
-                    date: '2023-10-10',
-                    payment: 'Crédito',
-                    user: Provider.of<Users>(context, listen: false).users[0],
-                    value: '1000',
-                    approved: 'Aprovada')
-              ])),
+      ChangeNotifierProvider(create: (context) => Sales(sales: [])),
       ChangeNotifierProvider(create: (context) => Memory()),
     ],
     child: const MyApp(),
