@@ -71,6 +71,7 @@ class _PasswordPageState extends State<PasswordPage> {
                             payment: 'Débito',
                             value: Provider.of<Memory>(context, listen: false)
                                 .value,
+                            approved: 'Aprovada',
                           ),
                         );
 
@@ -80,6 +81,7 @@ class _PasswordPageState extends State<PasswordPage> {
                         Navigator.pop(context);
                         Navigator.pop(context);
                         const snackBar = SnackBar(
+                          duration: Duration(seconds: 1),
                           backgroundColor: Colors.white54,
                           content: Text(
                             'Venda registrada com sucesso.',
@@ -91,6 +93,18 @@ class _PasswordPageState extends State<PasswordPage> {
 
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       } else {
+                        list.add(
+                          Sale(
+                            date: DateTime(now.year, now.month, now.day)
+                                .toString(),
+                            user: Provider.of<Memory>(context, listen: false)
+                                .activeUser,
+                            payment: 'Débito',
+                            value: Provider.of<Memory>(context, listen: false)
+                                .value,
+                            approved: 'Rejeitada',
+                          ),
+                        );
                         const snackBar = SnackBar(
                           backgroundColor: Colors.white54,
                           content: Text(

@@ -3,6 +3,7 @@ import 'package:gestao_vendas/components/home_button.dart';
 import 'package:gestao_vendas/pages/reports_pages/reports_page.dart';
 import 'package:gestao_vendas/pages/sale_pages/sale_page.dart';
 import 'package:gestao_vendas/pages/user_pages/user_page.dart';
+import 'package:intl/intl.dart';
 import '../components/clock.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,22 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // List<User>? temp;
-  // List<User> users = <User>[];
-
-  // void _addUsers() async {
-  //   List temp = await Navigator.push(
-  //     context,
-  //     MaterialPageRoute(builder: (context) => const UserPage()),
-  //   );
-
-  //   if (users != null) {
-  //     setState(() {
-  //       users.addAll(users);
-  //     });
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +32,7 @@ class _HomePageState extends State<HomePage> {
             const Expanded(
               flex: 1,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CustomHomeButtom(
                     label: 'Venda',

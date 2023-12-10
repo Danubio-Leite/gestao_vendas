@@ -62,6 +62,15 @@ class _ReportPageState extends State<ReportPage> {
                               'Usuário: ${list.sales[index].user.name}',
                               textAlign: TextAlign.start,
                             ),
+                            Text(
+                              list.sales[index].approved,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  color:
+                                      list.sales[index].approved == 'Aprovada'
+                                          ? Colors.green
+                                          : Colors.red),
+                            ),
                           ],
                         ),
                         trailing: IconButton(
@@ -87,7 +96,7 @@ class _ReportPageState extends State<ReportPage> {
         builder: (BuildContext context) {
           return AlertDialog(
             scrollable: true,
-            title: const Text('Excluir Relatório?'),
+            title: const Text('Excluir Transação?'),
             content: const Padding(
               padding: EdgeInsets.all(8.0),
             ),

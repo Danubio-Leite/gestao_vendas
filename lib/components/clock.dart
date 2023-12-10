@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 class ClockWidget extends StatefulWidget {
   @override
@@ -10,6 +12,7 @@ class ClockWidget extends StatefulWidget {
 class _ClockWidgetState extends State<ClockWidget> {
   String _currentTime = '';
   String _currentDate = '';
+  DateTime data = DateTime.now();
 
   @override
   void initState() {
@@ -45,6 +48,7 @@ class _ClockWidgetState extends State<ClockWidget> {
 
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('pt-BR');
     return Container(
       width: 300,
       decoration: BoxDecoration(
@@ -69,9 +73,10 @@ class _ClockWidgetState extends State<ClockWidget> {
             ),
             const SizedBox(height: 5.0),
             Text(
-              _currentDate,
+              '${DateFormat("EEEE", "pt_BR").format(data)}, ${DateFormat("d").format(data)} de ${DateFormat("MMMM", "pt_BR").format(data)}'
+                  .toUpperCase(),
               style: const TextStyle(
-                fontSize: 24.0,
+                fontSize: 18.0,
               ),
             ),
           ],
